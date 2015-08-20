@@ -11,7 +11,7 @@ class Game(pygame.sprite.Group):
     def add_internal(self,s):
         if isinstance(s,Damager):
             self.damagers.append(s)
-        elif isinstance(s,Static):
+        if isinstance(s,Static):
             self.statics.append(s)
         elif isinstance(s,(Controlled,PathFollower)):
             self.mobiles.append(s)
