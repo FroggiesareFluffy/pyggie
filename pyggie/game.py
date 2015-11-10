@@ -1,5 +1,6 @@
 import pygame
 
+
 class Game(pygame.sprite.Group):
     def __init__(self):
         pygame.sprite.Group.__init__(self)
@@ -8,24 +9,24 @@ class Game(pygame.sprite.Group):
         self.statics = []
         self.was_updated = True
 
-    def add_internal(self,s):
-        if isinstance(s,Damager):
+    def add_internal(self, s):
+        if isinstance(s, Damager):
             self.damagers.append(s)
-        if isinstance(s,Static):
+        if isinstance(s, Static):
             self.statics.append(s)
-        elif isinstance(s,(Controlled,PathFollower)):
+        elif isinstance(s, (Controlled, PathFollower)):
             self.mobiles.append(s)
-        Game.add_internal(self,s)
+        Game.add_internal(self, s)
         self.was_updated = True
 
-    def remove_internal(self,s):
-        if isinstance(s,Damager):
+    def remove_internal(self, s):
+        if isinstance(s, Damager):
             self.damagers.remove(s)
-        elif isinstance(s,Static):
+        elif isinstance(s, Static):
             self.statics.remove(s)
-        elif isinstance(s,(Controlled,PathFollower)):
+        elif isinstance(s, (Controlled, PathFollower)):
             self.mobiles.remove(s)
-        Game.remove_internal(self,s)
+        Game.remove_internal(self, s)
         self.was_updated = True
 
     def update(self):
@@ -33,6 +34,7 @@ class Game(pygame.sprite.Group):
             s.update()
         self.was_updated = False
 
-from mobiles import PathFollower,Controlled
-from statics import Static
-from bases import Damager
+
+from pyggie.gameobjs.mobiles import PathFollower, Controlled
+from pyggie.gameobjs.statics import Static
+from pyggie.gameobjs.bases import Damager
